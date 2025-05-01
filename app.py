@@ -17,7 +17,7 @@ if st.button("Add project"):
 
     sql = "INSERT INTO projecttable (name) VALUES (?)", (name)
     st.text(sql) 
-    cursor.execute(sql))
+    cursor.execute(sql)
     conn.commit()
     conn.close()
     st.success("Project added!")
