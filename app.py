@@ -10,12 +10,14 @@ st.write("This is my first deployed app 🚀")
 
 
 name = st.text_input("Name")
-email = st.text_input("Email")
 
 if st.button("Add project"):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO projecttable (name) VALUES (?)", (name))
+
+    sql = "INSERT INTO projecttable (name) VALUES (?)", (name)
+    st.text(sql) 
+    cursor.execute(sql))
     conn.commit()
     conn.close()
     st.success("Project added!")
