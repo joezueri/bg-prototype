@@ -15,9 +15,11 @@ if st.button("Add project"):
     conn = get_connection()
     cursor = conn.cursor()
 
-    sql = "INSERT INTO projecttable (name) VALUES (?)", (name)
+    sql = "INSERT INTO projecttable (name) VALUES (?)"
+    params = (name,)  # Note the comma to make it a tuple
+
     st.text(sql) 
-    cursor.execute(sql)
+    cursor.execute(sql, params)
     conn.commit()
     conn.close()
     st.success("Project added!")
