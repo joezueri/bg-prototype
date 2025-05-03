@@ -30,8 +30,19 @@ if st.button("Show all projects"):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM projecttable")
     rows = cursor.fetchall()
-    conn.close()
+    #conn.close()
     
-    st.write(rows)
+    for row in rows:
+        id_, name = row
+        cols = st.columns([1, 4, 1])
+        cols[0].write(id_)
+        cols[1].write(name)
+        if cols[2].button('❌ Delete', key=f'del_{id_}'):
+            cursor.execute("DELETE FROM projecttable WHERE id = ?", (id_,))
+            conn.commit()
+            st.success(f"Deleted project ID {id_}")
+            st.experimental_rerun()
+
+    #st.write(rows)
 
 
