@@ -25,24 +25,23 @@ if st.button("Add project"):
     st.success("Project added!")
 
 # Display users
-if st.button("Show all projects"):
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM projecttable")
-    rows = cursor.fetchall()
-    #conn.close()
-    
-    for row in rows:
-        id_, name = row
-        cols = st.columns([1, 4, 1])
-        cols[0].write(id_)
-        cols[1].write(name)
-        if cols[2].button('❌', key=f'del_{id_}'):
-            cursor.execute("DELETE FROM projecttable WHERE id = ?", (id_,))
-            conn.commit()
-            st.success(f"Deleted project ID {id_}")
-            #st.experimental_rerun()
+conn = get_connection()
+cursor = conn.cursor()
+cursor.execute("SELECT * FROM projecttable")
+rows = cursor.fetchall()
 
-    #st.write(rows)
+
+for row in rows:
+    id_, name = row
+    cols = st.columns([1, 4, 1])
+    cols[0].write(id_)
+    cols[1].write(name)
+    if cols[2].button('❌', key=f'del_{id_}'):
+        cursor.execute("DELETE FROM projecttable WHERE id = ?", (id_,))
+        conn.commit()
+        st.success(f"Deleted project ID {id_}")
+        #st.experimental_rerun()
+conn.close()
+#st.write(rows)
 
 
