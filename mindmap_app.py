@@ -14,15 +14,12 @@ html_code = """
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsmind@0.4.6/style/jsmind.css" />
 </head>
 <body>
-  <div id="jsmind_container" style="width:100%; height:400px; border: 1px solid #ccc;"></div>
+  <div id="jsmind_container" style="width:100%; height:400px; border: 1px solid #ccc; margin-bottom: 10px;"></div>
+  <button onclick="addNode()">➕ Add Node</button>
 
   <script>
     const mind = {
-      meta: {
-        name: "demo",
-        author: "you",
-        version: "1.0"
-      },
+      meta: { name: "demo", author: "you", version: "1.0" },
       format: "node_array",
       data: [
         { id: "root", isroot: true, topic: "Central Topic" },
@@ -38,6 +35,16 @@ html_code = """
     };
 
     const jm = jsMind.show(options, mind);
+
+    function addNode() {
+      const selected = jm.get_selected_node();
+      if (!selected) {
+        alert("Please select a node first.");
+        return;
+      }
+      const newId = 'node_' + Date.now();
+      jm.add_node(selected, newId, 'New Node');
+    }
   </script>
 </body>
 </html>
