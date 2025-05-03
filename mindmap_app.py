@@ -16,6 +16,8 @@ html_code = """
 <body>
   <div id="jsmind_container" style="width:100%; height:400px; border: 1px solid #ccc; margin-bottom: 10px;"></div>
   <button onclick="addNode()">➕ Add Node</button>
+  <button onclick="saveMindMap()">💾 Save Mind Map</button>
+
 
   <script>
     const mind = {
@@ -44,6 +46,10 @@ html_code = """
       }
       const newId = 'node_' + Date.now();
       jm.add_node(selected, newId, 'New Node');
+    }
+    function saveMindMap() {
+        const mindData = jm.get_data(); // Gets the full mind map
+        alert("Mind Map JSON:\n" + JSON.stringify(mindData, null, 2));
     }
   </script>
 </body>
