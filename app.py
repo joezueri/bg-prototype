@@ -37,7 +37,7 @@ if st.button("Show all projects"):
         cols = st.columns([1, 4, 1])
         cols[0].write(id_)
         cols[1].write(name)
-        if cols[2].button('❌ Delete', key=f'del_{id_}'):
+        if cols[2].button('❌', key=f'del_{id_}'):
             cursor.execute("DELETE FROM projecttable WHERE id = ?", (id_,))
             conn.commit()
             st.success(f"Deleted project ID {id_}")
