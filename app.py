@@ -41,7 +41,7 @@ if st.button("Show all projects"):
             cursor.execute("DELETE FROM projecttable WHERE id = ?", (id_,))
             conn.commit()
             st.success(f"Deleted project ID {id_}")
-            st.experimental_rerun()
+            #st.experimental_rerun()
 
     #st.write(rows)
 
