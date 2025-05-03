@@ -40,7 +40,7 @@ for row in rows:
         cursor.execute("DELETE FROM projecttable WHERE id = ?", (id_,))
         conn.commit()
         st.success(f"Deleted project ID {id_}")
-        st.experimental_rerun()
+        st.rerun()
 conn.close()
 #st.write(rows)
 
