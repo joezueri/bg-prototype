@@ -37,6 +37,7 @@ html_code = """
 
     const jm = jsMind.show(options, mind);
 
+    // Add Node function
     function addNode() {
       const selected = jm.get_selected_node();
       if (!selected) {
@@ -47,8 +48,9 @@ html_code = """
       jm.add_node(selected, newId, 'New Node');
     }
 
+    // Save Mind Map function (export the mind map as JSON)
     function saveMindMap() {
-      const mindData = jm.get_data(); // Gets the full mind map
+      const mindData = jm.get_data(); // Gets the full mind map data
       alert("Mind Map JSON:\n" + JSON.stringify(mindData, null, 2));
     }
   </script>
